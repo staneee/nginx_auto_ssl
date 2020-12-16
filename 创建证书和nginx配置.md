@@ -1,6 +1,4 @@
-# nginx_auto_ssl
-
-## 1. 获取证书
+## 证书
 
 ```sh
 # 拉取镜像
@@ -48,10 +46,10 @@ acme --issue --dns dns_dp \
 ```
 
 
-## 2. 编辑nginx配置
-请自行编辑 `conf.d` 目录中nginx配置文件
 
-## 3. 启动nginx容器
+
+
+## nginx 
 ```
 # 拉取nginx镜像
 sudo docker pull nginx:1.17.10
@@ -64,3 +62,30 @@ sudo docker run --network=host \
   -v "$(pwd)/conf.d":/etc/nginx/conf.d \
   --name nginx nginx:1.17.10
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

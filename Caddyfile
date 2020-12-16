@@ -1,0 +1,121 @@
+# 主站
+cyanstream.com:80 {
+    root /var/www/wwwcyanstreamcom
+}
+
+www.cyanstream.com:80 {
+    root /var/www/wwwcyanstreamcom
+}
+
+staneee.com:80 {
+    root /var/www/staneeecom
+}
+
+www.staneee.com:80 {
+    root /var/www/staneeecom
+}
+
+riven.staneee.com:80 {
+    root /var/www/riven.staneee.com
+}
+
+
+
+
+# blog
+blog.staneee.com:80 {
+    proxy / http://127.0.0.1:5000 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+    }
+    gzip
+
+}
+
+# gitlab frpc
+gitlab.cyanstream.com:80 {
+    proxy / http://127.0.0.1:7778 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+    }
+    gzip
+
+}
+
+# online frpc 60 8233 test
+online.cyanstream.com:80 {
+    proxy / http://127.0.0.1:7778 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+                websocket
+    }
+    gzip
+
+}
+
+vueapi.staneee.com:80 {
+ proxy / http://127.0.0.1:2333 {
+                
+    }
+  gzip
+}
+
+52abpdev.staneee.com:80 {
+ proxy / http://127.0.0.1:2334 {
+                
+    }
+  gzip
+}
+
+
+# editor
+editor.cyanstream.com:80 {
+   proxy / http://127.0.0.1:7778 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+    }
+
+}
+
+*.moons.cyanstream.com:80 {
+   proxy / http://127.0.0.1:7778 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+    }
+   gzip
+}
+
+
+*.w.cyanstream.com:80 {
+   proxy / http://127.0.0.1:7778 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+    }
+   gzip
+}
+
+
+*.riven.staneee.com:80 {
+   proxy / http://127.0.0.1:7778 {
+                header_upstream Host {host}
+                header_upstream X-Real-IP {remote}
+                header_upstream X-Forwarded-For {remote}
+                header_upstream X-Forwarded-Proto {scheme}
+    }
+   gzip
+}
+
+
+

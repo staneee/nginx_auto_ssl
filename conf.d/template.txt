@@ -1,0 +1,154 @@
+server {
+    listen 443 ssl;
+    server_name cyanstream.com;
+    ssl_certificate /cert/cyanstream.com/fullchain.pem;
+    ssl_certificate_key /cert/cyanstream.com/key.key;
+
+    access_log off;
+    location / {
+        # proxy_pass http://localhost:5000;
+        # proxy_set_header Host $host;
+        # proxy_set_header X-Real-IP $remote_addr;
+        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # proxy_set_header X-Forwarded-Proto $scheme;
+        # proxy_set_header Upgrade $http_upgrade;
+        # proxy_set_header Connection $http_connection;
+        # proxy_set_header Connection keep-alive;
+        # proxy_set_header real-ip $remote_addr;
+        # proxy_cache_bypass $http_upgrade;
+        # proxy_read_timeout 7200;
+        alias /var/www/staneeecom;
+        index index.html;
+        port_in_redirect off;
+    }
+}
+
+server {
+    listen 80;
+    server_name cyanstream.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name cyanstream.com;
+    ssl_certificate /cert/cyanstream.com/fullchain.pem;
+    ssl_certificate_key /cert/cyanstream.com/key.key;
+
+    # redict to https no-www domain
+    return 301 https://cyanstream.com$request_uri;
+}
+
+server {
+    listen 80;
+    server_name www.cyanstream.com;
+
+    # redict to https no-www domain
+    return 301 https://cyanstream.com$request_uri;
+}
+
+
+# gitlab.cyanstream.com
+server {
+    listen 80;
+    server_name gitlab.cyanstream.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:7778/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Connection keep-alive;
+        proxy_set_header real-ip $remote_addr;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 7200;
+        port_in_redirect off;
+    }
+}
+
+# online.cyanstream.com
+server {
+    listen 80;
+    server_name online.cyanstream.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:7778/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Connection keep-alive;
+        proxy_set_header real-ip $remote_addr;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 7200;
+        port_in_redirect off;
+    }
+}
+
+# editor.cyanstream.com
+server {
+    listen 80;
+    server_name editor.cyanstream.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:7778/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Connection keep-alive;
+        proxy_set_header real-ip $remote_addr;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 7200;
+        port_in_redirect off;
+    }
+}
+
+# *.moons.cyanstream.com
+server {
+    listen 80;
+    server_name *.moons.cyanstream.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:7778/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Connection keep-alive;
+        proxy_set_header real-ip $remote_addr;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 7200;
+        port_in_redirect off;
+    }
+}
+
+# *.w.cyanstream.com
+server {
+    listen 80;
+    server_name *.w.cyanstream.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:7778/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Connection keep-alive;
+        proxy_set_header real-ip $remote_addr;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 7200;
+        port_in_redirect off;
+    }
+}

@@ -20,8 +20,13 @@ sudo docker run --network=host \
   --restart=always -d  \
   -v "$(pwd)/acme":/acme.sh  \
   --name acme neilpang/acme.sh daemon
+  
+  
+# 注册  zerossl
+sudo docker exec acme --register-account  -m 邮箱地址 --server zerossl
 
 
+# 注意，申请域名证书需要配置相关的参数，请参照 https://github.com/acmesh-official/acme.sh/wiki 指定key和val,此处我使用dnspod
 
 # 申请泛域名证书 staneee.com
 sudo docker exec \

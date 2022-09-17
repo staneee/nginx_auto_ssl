@@ -32,7 +32,8 @@ sudo docker exec acme --register-account  -m 邮箱地址 --server zerossl
 sudo docker exec \
 -e DP_Id= \
 -e DP_Key= \
-acme --issue --dns dns_dp \
+acme --issue --standalone \ 
+--dns dns_dp \
 -d *.staneee.com \
 --cert-file	       /acme.sh/domains/staneee.com/cert.cert \
 --key-file         /acme.sh/domains/staneee.com/key.key \
@@ -43,7 +44,8 @@ acme --issue --dns dns_dp \
 sudo docker exec \
 -e DP_Id= \
 -e DP_Key= \
-acme --issue --dns dns_dp \
+acme --issue --standalone \ 
+--dns dns_dp \
 -d *.cyanstream.com \
 --cert-file	       /acme.sh/domains/cyanstream.com/cert.cert \
 --key-file         /acme.sh/domains/cyanstream.com/key.key \

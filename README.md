@@ -28,16 +28,52 @@ sudo docker exec acme --register-account  -m 邮箱地址 --server zerossl
 # 注意，申请域名证书需要配置相关的参数，请参照 https://github.com/acmesh-official/acme.sh/wiki 指定key和val,此处我使用dnspod
 
 # 申请泛域名证书 staneee.com
+## 第一次申请
 sudo docker exec \
 -e DP_Id= \
 -e DP_Key= \
-acme --issue --standalone \ 
+acme --issue \
 --dns dns_dp \
 -d *.staneee.com \
 --cert-file	       /acme.sh/domains/staneee.com/cert.cert \
 --key-file         /acme.sh/domains/staneee.com/key.key \
 --ca-file          /acme.sh/domains/staneee.com/ca.cer \
 --fullchain-file   /acme.sh/domains/staneee.com/fullchain.pem
+
+## 第二次申请，手动更新
+sudo docker exec \
+acme --issue \
+--dns dns_dp \
+-d *.staneee.com \
+--cert-file	       /acme.sh/domains/staneee.com/cert.cert \
+--key-file         /acme.sh/domains/staneee.com/key.key \
+--ca-file          /acme.sh/domains/staneee.com/ca.cer \
+--fullchain-file   /acme.sh/domains/staneee.com/fullchain.pem \
+--force
+
+# 申请泛域名证书 prod.staneee.com
+## 第一次申请
+sudo docker exec \
+-e DP_Id= \
+-e DP_Key= \
+acme --issue  \
+--dns dns_dp \
+-d *.prod.staneee.com \
+--cert-file	       /acme.sh/domains/prod.staneee.com/cert.cert \
+--key-file         /acme.sh/domains/prod.staneee.com/key.key \
+--ca-file          /acme.sh/domains/prod.staneee.com/ca.cer \
+--fullchain-file   /acme.sh/domains/prod.staneee.com/fullchain.pem
+
+## 第二次申请，手动更新
+sudo docker exec \
+acme --issue  \
+--dns dns_dp \
+-d *.prod.staneee.com \
+--cert-file	       /acme.sh/domains/prod.staneee.com/cert.cert \
+--key-file         /acme.sh/domains/prod.staneee.com/key.key \
+--ca-file          /acme.sh/domains/prod.staneee.com/ca.cer \
+--fullchain-file   /acme.sh/domains/prod.staneee.com/fullchain.pem \
+--force
 
 ```
 

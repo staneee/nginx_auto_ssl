@@ -4,7 +4,7 @@
 
 ```sh
 # 拉取镜像
-sudo docker pull neilpang/acme.sh
+sudo docker pull neilpang/acme.sh:3.0.5
 
 # 运行
 # https://github.com/acmesh-official/acme.sh/wiki/Run-acme.sh-in-docker
@@ -13,13 +13,12 @@ sudo docker pull neilpang/acme.sh
 mkdir ./acme
 mkdir ./acme/domains
 mkdir ./acme/domains/staneee.com
-mkdir ./acme/domains/cyanstream.com
 
 # 启动容器
 sudo docker run --network=host \
   --restart=always -d  \
   -v "$(pwd)/acme":/acme.sh  \
-  --name acme neilpang/acme.sh daemon
+  --name acme neilpang/acme.sh:3.0.5 daemon
   
   
 # 注册  zerossl
@@ -39,18 +38,6 @@ acme --issue --standalone \
 --key-file         /acme.sh/domains/staneee.com/key.key \
 --ca-file          /acme.sh/domains/staneee.com/ca.cer \
 --fullchain-file   /acme.sh/domains/staneee.com/fullchain.pem
-
-# 申请泛域名证书 cyanstream.com
-sudo docker exec \
--e DP_Id= \
--e DP_Key= \
-acme --issue --standalone \ 
---dns dns_dp \
--d *.cyanstream.com \
---cert-file	       /acme.sh/domains/cyanstream.com/cert.cert \
---key-file         /acme.sh/domains/cyanstream.com/key.key \
---ca-file          /acme.sh/domains/cyanstream.com/ca.cer \
---fullchain-file   /acme.sh/domains/cyanstream.com/fullchain.pem
 
 ```
 

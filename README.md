@@ -13,6 +13,7 @@ sudo docker pull neilpang/acme.sh:3.0.5
 mkdir ./acme
 mkdir ./acme/domains
 mkdir ./acme/domains/staneee.com
+mkdir ./acme/domains/prod.staneee.com
 
 # 启动容器
 sudo docker run --network=host \
